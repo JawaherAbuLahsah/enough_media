@@ -9,9 +9,9 @@ import '../media_provider.dart';
 class AudioInteractiveMedia extends StatefulWidget {
   final MediaProvider mediaProvider;
   AudioInteractiveMedia({
-    Key? key,
+    super.key,
     required this.mediaProvider,
-  }) : super(key: key);
+  });
 
   @override
   _AudioInteractiveMediaState createState() => _AudioInteractiveMediaState();

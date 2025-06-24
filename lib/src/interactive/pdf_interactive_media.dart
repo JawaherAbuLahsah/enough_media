@@ -1,69 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:pdfx/pdfx.dart';
+import 'package:pdfrx/pdfrx.dart';
 
 import '../media_provider.dart';
 
 /// Displays PDFs
-class PdfInteractiveMedia extends StatefulWidget {
+class PdfInteractiveMedia extends StatelessWidget {
   final MediaProvider mediaProvider;
-  PdfInteractiveMedia({Key? key, required this.mediaProvider})
-      : super(key: key);
+  PdfInteractiveMedia({super.key, required this.mediaProvider});
 
   @override
-  _PdfInteractiveMediaState createState() => _PdfInteractiveMediaState();
-}
-
-class _PdfInteractiveMediaState extends State<PdfInteractiveMedia> {
-  late PdfController pdfController;
-
-  @override
-  void initState() {
-    pdfController = PdfController(document: initDocument(widget.mediaProvider));
-    super.initState();
-  }
-
-  Future<PdfDocument> initDocument(final MediaProvider provider) {
+  Widget build(BuildContext context) {
+    final provider = mediaProvider;
     if (provider is MemoryMediaProvider) {
-      return PdfDocument.openData(provider.data);
-      // } else if (provider is UrlMediaProvider) {
-      //     provider.url
-      //   );
+      return PdfViewer.data(provider.data, sourceName: provider.name);
+    } else if (provider is UrlMediaProvider) {
+      return PdfViewer.uri(Uri.parse(provider.url));
     } else if (provider is AssetMediaProvider) {
-      return PdfDocument.openAsset(provider.assetName);
+      return PdfViewer.asset(provider.assetName);
     } else {
       throw StateError('Unsupported media provider $provider');
     }
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return PdfView(
-      controller: pdfController,
-    );
-  }
-
-  // void onTextSelectionChanged(PdfTextSelectionChangedDetails details) {
-  //   if (details.selectedText == null && overlayEntry != null) {
-  //     overlayEntry.remove();
-  //     overlayEntry = null;
-  //   } else if (details.selectedText != null && overlayEntry == null) {
-  //     final OverlayState overlayState = Overlay.of(context);
-  //     overlayEntry = OverlayEntry(
-  //       builder: (context) => Positioned(
-  //         top: details.globalSelectedRegion.center.dy - 55,
-  //         left: details.globalSelectedRegion.bottomLeft.dx,
-  //         child: RaisedButton(
-  //           child: Text('Copy', style: TextStyle(fontSize: 17)),
-  //           onPressed: () {
-  //             Clipboard.setData(ClipboardData(text: details.selectedText));
-  //             pdfViewerController.clearSelection();
-  //           },
-  //           color: Colors.white,
-  //           elevation: 10,
-  //         ),
-  //       ),
-  //     );
-  //     overlayState.insert(overlayEntry);
-  //   }
-  // }
 }

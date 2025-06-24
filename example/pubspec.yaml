@@ -3,8 +3,8 @@ description: Example for enough_media usage.
 homepage: https://github.com/enough-software/enough_media
 
 environment:
-  sdk: ">=2.18.0 <4.0.0"
-  flutter: ">=3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.27.0"
 
 dependencies:
   flutter:

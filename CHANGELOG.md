@@ -1,3 +1,7 @@
+## [3.0.0] - 2025-06-23
+* Ensure compatibility with Flutter 3.32
+* Switch to `pdfrx` package for PDF support
+
 ## [2.3.1] - 2024-05-22
 * Ensure compatibility with Flutter 3.22
 
