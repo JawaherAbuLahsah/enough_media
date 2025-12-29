@@ -7,7 +7,8 @@ import '../media_provider.dart';
 
 class VideoInteractiveMedia extends StatefulWidget {
   final MediaProvider mediaProvider;
-  VideoInteractiveMedia({super.key, required this.mediaProvider});
+  VideoInteractiveMedia({Key? key, required this.mediaProvider})
+      : super(key: key);
 
   @override
   _VideoInteractiveMediaState createState() => _VideoInteractiveMediaState();

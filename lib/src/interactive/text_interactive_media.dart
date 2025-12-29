@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 class TextInteractiveMedia extends StatelessWidget {
   final MediaProvider mediaProvider;
 
-  const TextInteractiveMedia({super.key, required this.mediaProvider});
+  const TextInteractiveMedia({Key? key, required this.mediaProvider})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
